@@ -1,33 +1,36 @@
-# Financial Management Backend
+# PlanWise Frontend
 
-A simple AI-powered financial management tool backend built with Node.js, TypeScript, Express, and MySQL.
+A modern React-based financial management application frontend built with TypeScript, Vite, and Tailwind CSS.
 
 ## Features
 
-- **User Authentication**: Register, login, email verification, password reset
-- **Expense Tracking**: Add, edit, delete, and categorize expenses
-- **Financial Goals**: Set and track progress towards financial goals
-- **Budget Management**: Create and monitor monthly budgets
-- **AI Recommendations**: Get AI-powered insights and recommendations using Google Gemini
-- **Email Notifications**: OTP verification and password reset emails
+- **Authentication**: User registration, login, and OTP verification
+- **Dashboard**: Overview of financial metrics and recent activity
+- **Expense Management**: Add, edit, delete, and categorize expenses
+- **Budget Tracking**: Set monthly budgets and track spending
+- **Financial Goals**: Create and track progress towards financial objectives
+- **AI Insights**: Get personalized financial recommendations and spending analysis
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
 
 ## Tech Stack
 
-- **Backend**: Node.js, TypeScript, Express.js
-- **Database**: MySQL
-- **AI**: Google Generative AI (Gemini)
-- **Email**: Nodemailer
-- **Security**: JWT, bcryptjs, helmet, cors, rate limiting
+- **React 19** - Frontend framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router** - Client-side routing
+- **React Hook Form** - Form handling
+- **Axios** - HTTP client
+- **Lucide React** - Icon library
 
-## Setup Instructions
+## Getting Started
 
-### 1. Prerequisites
+### Prerequisites
 
-- Node.js (v16 or higher)
-- MySQL (v8.0 or higher)
+- Node.js 18+ 
 - npm or yarn
 
-### 2. Installation
+### Installation
 
 1. Clone the repository
 2. Install dependencies:
@@ -35,123 +38,94 @@ A simple AI-powered financial management tool backend built with Node.js, TypeSc
    npm install
    ```
 
-3. Set up environment variables:
+3. Start the development server:
    ```bash
-   cp .env.example .env
-   ```
-   Then edit `.env` with your actual values.
-
-### 3. Database Setup
-
-1. Create a MySQL database called `financial_management`
-2. Run the schema file to create tables:
-   ```bash
-   mysql -u your_username -p financial_management < database/schema.sql
+   npm run dev
    ```
 
-### 4. Environment Variables
+4. Open http://localhost:5173 in your browser
 
-Configure the following in your `.env` file:
+### Environment Setup
 
-- **Database**: MySQL connection details
-- **JWT**: Secret key for token signing
-- **Email**: SMTP configuration (Gmail recommended)
-- **AI**: Google Gemini API key
+Make sure your backend server is running on `http://localhost:3000` for the API calls to work properly.
 
-### 5. Run the Application
+## Available Scripts
 
-Development mode:
-```bash
-npm run dev
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── contexts/           # React contexts (Auth)
+├── pages/             # Page components
+├── services/          # API services
+├── types/             # TypeScript type definitions
+└── App.tsx            # Main app component
 ```
 
-Production build:
-```bash
-npm run build
-npm start
-```
+## API Integration
 
-## API Endpoints
+The frontend integrates with the PlanWise backend API with the following endpoints:
 
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/verify-otp` - Verify email with OTP
-- `POST /api/auth/login` - User login
-- `POST /api/auth/forgot-password` - Request password reset
-- `POST /api/auth/reset-password` - Reset password with OTP
+- `/api/auth/*` - Authentication endpoints
+- `/api/expenses/*` - Expense management
+- `/api/budgets/*` - Budget management
+- `/api/goals/*` - Financial goals
+- `/api/categories/*` - Expense categories
+- `/api/ai/*` - AI-powered insights
 
-### Expenses
-- `GET /api/expenses` - Get user expenses
-- `POST /api/expenses` - Create new expense
-- `PUT /api/expenses/:id` - Update expense
-- `DELETE /api/expenses/:id` - Delete expense
-- `GET /api/expenses/stats/summary` - Get expense statistics
+## Key Features
 
-### Goals
-- `GET /api/goals` - Get user goals
-- `POST /api/goals` - Create new goal
-- `PUT /api/goals/:id` - Update goal
-- `PATCH /api/goals/:id/progress` - Update goal progress
-- `DELETE /api/goals/:id` - Delete goal
+### Authentication Flow
+- User registration with email verification
+- Secure login with JWT tokens
+- Protected routes with automatic redirection
 
-### Budgets
-- `GET /api/budgets` - Get user budgets
-- `POST /api/budgets` - Create new budget
-- `PUT /api/budgets/:id` - Update budget
-- `DELETE /api/budgets/:id` - Delete budget
-- `GET /api/budgets/overview/current` - Get current month overview
+### Dashboard
+- Financial overview cards
+- Recent expenses list
+- Budget utilization progress
+- Active goals tracking
+- Quick action buttons
 
-### AI Features
-- `POST /api/ai/recommendations/budgeting` - Get AI budgeting recommendations
-- `POST /api/ai/insights/spending` - Get AI spending insights
-- `POST /api/ai/advice/goal/:goalId` - Get AI goal advice
-- `GET /api/ai/recommendations` - Get all AI recommendations
+### Expense Management
+- Add/edit/delete expenses
+- Category-based organization
+- Date range filtering
+- Search functionality
+- Responsive data table
 
-### Categories
-- `GET /api/categories` - Get all expense categories
+### Budget Tracking
+- Monthly budget creation
+- Real-time utilization tracking
+- Visual progress indicators
+- Budget vs actual spending comparison
 
-## API Testing
+### Financial Goals
+- Goal creation with target amounts and dates
+- Progress tracking
+- Contribution management
+- Status-based filtering
 
-Use tools like Postman or Thunder Client to test the API endpoints. Make sure to:
-
-1. Register a new user
-2. Verify email with OTP
-3. Login to get JWT token
-4. Include the token in Authorization header for protected endpoints: `Bearer <token>`
-
-## Health Check
-
-Check if the server is running:
-```
-GET /health
-```
-
-## Security Features
-
-- JWT authentication
-- Password hashing with bcrypt
-- Rate limiting
-- CORS protection
-- Helmet security headers
-- Input validation with Joi
-
-## AI Integration
-
-The application uses Google's Gemini AI to provide:
+### AI Insights
 - Personalized budgeting recommendations
-- Spending pattern insights
-- Goal achievement advice
-
-Make sure to get a Gemini API key from Google AI Studio and add it to your environment variables.
+- Spending pattern analysis
+- AI-powered financial advice
+- Formatted insight display
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test thoroughly
+4. Run tests and linting
 5. Submit a pull request
 
 ## License
 
-MIT License - see LICENSE file for details.
+This project is licensed under the MIT License.
